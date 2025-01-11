@@ -6,7 +6,11 @@ select avg(Balance),Geography from churn1 group by Geography;
 
 # 2. Identify the top 3 customers with the highest estimated salary in France.
 
-select Surname,Geography,EstimatedSalary from churn1 where Geography = 'France' order by EstimatedSalary desc limit 3;
+select Surname,Geography,EstimatedSalary 
+from churn1 
+where Geography = 'France' 
+order by EstimatedSalary desc 
+limit 3;
 
 # 3.Calculate the churn rate for customers with a credit score below 600.
 
@@ -27,7 +31,9 @@ FROM churn1
 GROUP BY CustomerStatus;
 
 # 5. Determine the percentage of customers who are active members in each country
-select Geography,(count(case when IsActiveMember=1 then 1 end) *100 )/count(*) as ActiveMemberPercentage from churn1 group by Geography;
+select Geography,(count(case when IsActiveMember=1 then 1 end) *100 )/count(*) as ActiveMemberPercentage 
+from churn1 
+group by Geography;
 
 
  # 6.Find the customers who have been with the bank for more than 5 years and have a balance greater than the average balance
@@ -38,10 +44,10 @@ select Geography,(count(case when IsActiveMember=1 then 1 end) *100 )/count(*) a
 
 select 
 	case 
-		 when Exited = 1 then 'exited'
-		 else 'not exited'
-    end as AvgAge ,
-    avg(Age)
+		when Exited = 1 then 'exited'
+		else 'not exited'
+        end as AvgAge ,
+avg(Age)
 from churn1
 group by AvgAge ;
 
@@ -56,11 +62,11 @@ limit 1;
 
 select 
 	case when Age between 18 and 25 then '18-25' 
-		 when Age between 26 and 35 then '26-35'
-         when Age between 36 and 45 then '36-45'
-         else '46+'
+	     when Age between 26 and 35 then '26-35'
+             when Age between 36 and 45 then '36-45'
+             else '46+'
 	end as noc,
-	count(*)
+count(*)
 from churn1
 group by noc ;
 
